@@ -2,14 +2,14 @@
 
 urbanChemFoam is a weakly compressible, reactive solver developed based on the open source finite volume computational continuum mechanics framework OpenFOAM (Weller et al., 1998).  Additional components have been introduced in conjunction to provide characteristics of a chemical transport model for an infinite street canyon.  These are:
 
----------------------------------|---------------------------------------------------------------
-`dateTime`                       |	Associating simulation time with physical time based on Julian Date
-`solarUtils`                     |	Calculating solar state based on geographical information and physical time 
-`irreversiblephotolysisReaction` |	Implementation of photolysis reactions for the OpenFOAM core thermophysics module
-`simpleEmission`                 |	Enables emission boundary conditions to be prescribed in units of mass instead of mass mixing ratio
-`cyclicFixedValue`               |	Allows scalars to be prescribed as a Dirchlet condition on a cyclic boundary
-`cyclicZeroGradient`             |	Allows scalars to be prescribed as a Neumann condition on a cyclic boundary
-`initCanyon`                     |	Utility to initialize velocity field in an infinite street canyon domain with perturbation
+
+| `dateTime`                       |	Associating simulation time with physical time based on Julian Date |
+| `solarUtils`                     |	Calculating solar state based on geographical information and physical time |
+| `irreversiblephotolysisReaction` |	Implementation of photolysis reactions for the OpenFOAM core thermophysics module |
+| `simpleEmission`                 |	Enables emission boundary conditions to be prescribed in units of mass instead of mass mixing ratio |
+| `cyclicFixedValue`               |	Allows scalars to be prescribed as a Dirchlet condition on a cyclic boundary |
+| `cyclicZeroGradient`             |	Allows scalars to be prescribed as a Neumann condition on a cyclic boundary |
+| `initCanyon`                     |	Utility to initialize velocity field in an infinite street canyon domain with perturbation |
 
 urbanChemFoam and all related components, described in this document or otherwise, are licensed under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or, at your option, any later version.  A copy of the GNU General Public License can be found along with the distribution of urbanChemFoam.  If not, please refer to the URL http://www.gnu.org/licenses/.
 
