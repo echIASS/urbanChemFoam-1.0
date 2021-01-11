@@ -28,39 +28,39 @@ These modules can be built as user applications and libraries upon a existing fu
 
   b.	Some urbanChemFoam components have been known to work only with OpenFOAM version 7.  The reaction class interface has been modified in this version and is incompatible with previous versions of OpenFOAM.  In addition, there are irreconcilable differences in basic data structures implementation between OpenFOAM from CFD Direct (the “.org” URL) and that from ESI (the “.com” URL) that urbanChemFoam will fail to compile in the ESI release
  
-2)	Follow the instructions for installing the OpenFOAM 7 framework, first by installing the third-party tools, followed by the OpenFOAM core, with the following notes
+2.	Follow the instructions for installing the OpenFOAM 7 framework, first by installing the third-party tools, followed by the OpenFOAM core, with the following notes
 
-a.	Compilation of third-party library CGAL and its dependencies is not required
+  a.	Compilation of third-party library CGAL and its dependencies is not required
 
-b.	Compilation of third-party application Paraview and its dependencies is not necessary as Paraview 5.4.0 can also be installed independently, for instance, from a binary package
+  b.	Compilation of third-party application Paraview and its dependencies is not necessary as Paraview 5.4.0 can also be installed independently, for instance, from a binary package
 
-3)	Upon successful installation of OpenFOAM (this will take a while), inspect the paths reported by following environment variables to ensure they are correct
+3.	Upon successful installation of OpenFOAM (this will take a while), inspect the paths reported by following environment variables to ensure they are correct
 
-a.	WM_PROJECT_INST (location of the OpenFOAM framework)
-b.	WM_PROJECT_DIR (location of the OpenFOAM core)
-c.	WM_PROJECT_USER (location of the OpenFOAM user-defined modules)
-d.	WM_THIRD_PARTY_DIR (location of the OpenFOAM third-party components)
+  a.	WM_PROJECT_INST (location of the OpenFOAM framework)
+  b.	WM_PROJECT_DIR (location of the OpenFOAM core)
+  c.	WM_PROJECT_USER (location of the OpenFOAM user-defined modules)
+  d.	WM_THIRD_PARTY_DIR (location of the OpenFOAM third-party components)
 
-4)	Source the script ${WM_PROJECT_DIR}/etc/bashrc before using any OpenFOAM solvers or components
+4.	Source the script ${WM_PROJECT_DIR}/etc/bashrc before using any OpenFOAM solvers or components
 
-5)	Unpack the tarball urbanChemFoam-1.0.tar.gz and component source codes into the location indicated by ${WM_PROJECT_USER}.  Create the directory if it does not exist.  Adjust any contents in the directory as necessary should the path in question be not empty
+5.	Unpack the tarball urbanChemFoam-1.0.tar.gz and component source codes into the location indicated by ${WM_PROJECT_USER}.  Create the directory if it does not exist.  Adjust any contents in the directory as necessary should the path in question be not empty
 
-6)	Link or copy the following files or directory from directory ${WM_PROJECT_USER}/src/ to corresponding locations in directory ${WM_PROJECT_DIR}/src/
+6.	Link or copy the following files or directory from directory ${WM_PROJECT_USER}/src/ to corresponding locations in directory ${WM_PROJECT_DIR}/src/
 
-a.	makePhotolysisReactions.C in thermophysicalModels/specie/reaction/reactions
-b.	photolysisReactionRate in thermophysicalModels/specie/reaction/reactionRate
+  a.	makePhotolysisReactions.C in thermophysicalModels/specie/reaction/reactions
+  b.	photolysisReactionRate in thermophysicalModels/specie/reaction/reactionRate
 
-7)	Link the files below in ${WM_PROJECT_DIR}/src/thermopyhsicalModels/specie/lnInclude
+7.	Link the files below in ${WM_PROJECT_DIR}/src/thermopyhsicalModels/specie/lnInclude
 
-a.	${WM_PROJECT_USER}/src/common/commonGlobals.H
-b.	${WM_PROJECT_DIR}/src/ … /photolysisReactionRate/photolysisReactionRate.H
-c.	${WM_PROJECT_DIR}/src/ … /photolysisReactionRate/photolysisReactionRateI.H
+  a.	${WM_PROJECT_USER}/src/common/commonGlobals.H
+  b.	${WM_PROJECT_DIR}/src/ … /photolysisReactionRate/photolysisReactionRate.H
+  c.	${WM_PROJECT_DIR}/src/ … /photolysisReactionRate/photolysisReactionRateI.H
 
-8)	Execute the script Allwmake in directory ${WM_PROJECT_DIR}/src/thermophysicalModels to update the OpenFOAM core thermophysics module with photolysis reactions
+8.	Execute the script Allwmake in directory ${WM_PROJECT_DIR}/src/thermophysicalModels to update the OpenFOAM core thermophysics module with photolysis reactions
 
-9)	Execute the script Allwmake in directory ${WM_PROJECT_USER} to build the remaining components and utilities for urbanChemFoam
+9.	Execute the script Allwmake in directory ${WM_PROJECT_USER} to build the remaining components and utilities for urbanChemFoam
 
-10)	Verify that a platform directory has been created in ${WM_PROJECT_USER} after the build, and urbanChemFoam, initCanyon, as well as all other components are located in the sub-directories (e.g., platform/linux64GccDPInt32Opt/bin and platform/linux64GccDPInt32Opt/lib)
+10.	Verify that a platform directory has been created in ${WM_PROJECT_USER} after the build, and urbanChemFoam, initCanyon, as well as all other components are located in the sub-directories (e.g., platform/linux64GccDPInt32Opt/bin and platform/linux64GccDPInt32Opt/lib)
 
 ## Workflow for executing accompanied cases
 
