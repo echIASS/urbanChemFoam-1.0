@@ -1,0 +1,36 @@
+#!/bin/bash
+
+call_local_wmake ( )  {
+	MODULE=${1}
+	REBUILD=${2}
+	echo " *** building module ${MODULE}"
+	cd ${MODULE}
+	if [ ! -z "${2}" ]; then
+		wclean
+		rm -rf ./Make/lin*
+	fi
+	wmake
+	cd ..
+}
+
+if [ ! -z "${1}" ];
+    then echo " *** performing fresh rebuild"
+fi
+
+SRC=${WM_PROJECT_USER_DIR}/src
+FLD=${SRC}/finiteVolume/fields/fvPatchFields
+
+APP=${WM_PROJECT_USER_DIR}/applications
+SOLV=${APP}/solvers
+UTIL=${APP}/utilities
+
+PREP=${UTIL}/preProcessing
+
+call_local_wmake ${FLD}/constraint/cyclicFixedValue ${1}
+call_local_wmake ${FLD}/constraint/cyclicZeroGradient ${1}
+call_local_wmake ${FLD}/derived/simpleEmission ${1}
+call_local_wmake ${SRC}/dateTime ${1}
+call_local_wmake ${SRC}/solarUtils ${1}
+call_local_wmake ${SRC}/reactionModels ${1}
+call_local_wmake ${SOLV}/urbanChemFoam ${1}
+call_local_wmake ${PREP}/initCanyon ${1}
