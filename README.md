@@ -1,7 +1,5 @@
 # urbanChemFoam
 
-Compilation Instructions for urbanChemFoam and related components
-
 urbanChemFoam is a weakly compressible, reactive solver developed based on the open source finite volume computational continuum mechanics framework OpenFOAM (Weller et al., 1998).  Additional components have been introduced in conjunction to provide characteristics of a chemical transport model for an infinite street canyon.  These are:
 
 dateTime :	Associating simulation time with physical time based on Julian Date
@@ -19,6 +17,8 @@ cyclicZeroGradient :	Allows scalars to be prescribed as a Neumann condition on a
 initCanyon :	Utility to initialize velocity field in an infinite street canyon domain with perturbation
 
 urbanChemFoam and all related components, described in this document or otherwise, are licensed under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or, at your option, any later version.  A copy of the GNU General Public License can be found along with the distribution of urbanChemFoam.  If not, please refer to the URL http://www.gnu.org/licenses/.
+
+##Compilation Instructions for urbanChemFoam and related components
 
 These modules can be built as user applications and libraries upon a existing functional installation of OpenFOAM version 7, maintained by CFD Direct Ltd..  Instructions to install OpenFOAM version 7, urbanChemFoam, and all related components are presented below.  It is assumed that the user will compile said source locally on a Linux system using GCC version 4.8 and above.  In addition to the GCC version requirement, a version of MPI library compiled with the same version GCC tools for OpenFOAM is also requisite.  In the case of this study, it is version 4.0.1 of OpenMPI (default MPI library for OpenFOAM) compiled with GCC 9.2.0:
 
