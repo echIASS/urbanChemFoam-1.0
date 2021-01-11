@@ -2,7 +2,7 @@
 
 urbanChemFoam is a weakly compressible, reactive solver developed based on the open source finite volume computational continuum mechanics framework OpenFOAM (Weller et al., 1998).  Additional components have been introduced in conjunction to provide characteristics of a chemical transport model for an infinite street canyon.  These are:
 
-dateTime :	Associating simulation time with physical time based on Julian Date
+**dateTime** :	Associating simulation time with physical time based on Julian Date
 
 solarUtils :	Calculating solar state based on geographical information and physical time 
 
