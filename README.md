@@ -24,22 +24,22 @@ These modules can be built as user applications and libraries upon a existing fu
 
 1.	Download the source packages for OpenFOAM version 7 and accompanying third-party tools from the OpenFOAM Foundation website
 
-  a.	The URL at the time of writing is https://openfoam.org/download/7-source/
+  i.	The URL at the time of writing is https://openfoam.org/download/7-source/
 
-  b.	Some urbanChemFoam components have been known to work only with OpenFOAM version 7.  The reaction class interface has been modified in this version and is incompatible with previous versions of OpenFOAM.  In addition, there are irreconcilable differences in basic data structures implementation between OpenFOAM from CFD Direct (the “.org” URL) and that from ESI (the “.com” URL) that urbanChemFoam will fail to compile in the ESI release
+  ii.	Some urbanChemFoam components have been known to work only with OpenFOAM version 7.  The reaction class interface has been modified in this version and is incompatible with previous versions of OpenFOAM.  In addition, there are irreconcilable differences in basic data structures implementation between OpenFOAM from CFD Direct (the “.org” URL) and that from ESI (the “.com” URL) that urbanChemFoam will fail to compile in the ESI release
  
 2.	Follow the instructions for installing the OpenFOAM 7 framework, first by installing the third-party tools, followed by the OpenFOAM core, with the following notes
 
-  a.	Compilation of third-party library CGAL and its dependencies is not required
+  i.	Compilation of third-party library CGAL and its dependencies is not required
 
-  b.	Compilation of third-party application Paraview and its dependencies is not necessary as Paraview 5.4.0 can also be installed independently, for instance, from a binary package
+  ii.	Compilation of third-party application Paraview and its dependencies is not necessary as Paraview 5.4.0 can also be installed independently, for instance, from a binary package
 
 3.	Upon successful installation of OpenFOAM (this will take a while), inspect the paths reported by following environment variables to ensure they are correct
 
-  a.	WM_PROJECT_INST (location of the OpenFOAM framework)
-  b.	WM_PROJECT_DIR (location of the OpenFOAM core)
-  c.	WM_PROJECT_USER (location of the OpenFOAM user-defined modules)
-  d.	WM_THIRD_PARTY_DIR (location of the OpenFOAM third-party components)
+  i.	WM_PROJECT_INST (location of the OpenFOAM framework)
+  ii.	WM_PROJECT_DIR (location of the OpenFOAM core)
+  iii.	WM_PROJECT_USER (location of the OpenFOAM user-defined modules)
+  iv.	WM_THIRD_PARTY_DIR (location of the OpenFOAM third-party components)
 
 4.	Source the script ${WM_PROJECT_DIR}/etc/bashrc before using any OpenFOAM solvers or components
 
