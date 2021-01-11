@@ -1,0 +1,3 @@
+simpleEmissionFvPatchFields.C
+
+LIB = $(FOAM_USER_LIBBIN)/libsimpleEmission

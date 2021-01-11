@@ -1,0 +1,3 @@
+cyclicFixedValueFvPatchFields.C
+
+LIB = $(FOAM_USER_LIBBIN)/libcyclicFixedValue

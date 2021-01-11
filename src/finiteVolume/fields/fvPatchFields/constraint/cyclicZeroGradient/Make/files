@@ -1,0 +1,3 @@
+cyclicZeroGradientFvPatchFields.C
+
+LIB = $(FOAM_USER_LIBBIN)/libcyclicZeroGradient

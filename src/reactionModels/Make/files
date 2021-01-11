@@ -1,0 +1,13 @@
+reactionModel/reactionModel.C
+ReactionModel/ReactionModel/ReactionModels.C
+
+diffusion/diffusions.C
+infinitelyFastChemistry/infinitelyFastChemistrys.C
+
+noReaction/noReactions.C
+laminar/laminars.C
+
+PaSR/PaSRs.C
+EDC/EDCs.C
+
+LIB = $(FOAM_USER_LIBBIN)/libreactionModels
