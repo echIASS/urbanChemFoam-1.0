@@ -4,17 +4,17 @@ urbanChemFoam is a weakly compressible, reactive solver developed based on the o
 
 **dateTime** :	Associating simulation time with physical time based on Julian Date
 
-solarUtils :	Calculating solar state based on geographical information and physical time 
+**solarUtils** :	Calculating solar state based on geographical information and physical time 
 
-irreversiblephotolysisReaction :	Implementation of photolysis reactions for the OpenFOAM core thermophysics module
+**irreversiblephotolysisReaction** :	Implementation of photolysis reactions for the OpenFOAM core thermophysics module
 
-simpleEmission :	Enables emission boundary conditions to be prescribed in units of mass instead of mass mixing ratio
+**simpleEmission** :	Enables emission boundary conditions to be prescribed in units of mass instead of mass mixing ratio
 
-cyclicFixedValue :	Allows scalars to be prescribed as a Dirchlet condition on a cyclic boundary
+**cyclicFixedValue** :	Allows scalars to be prescribed as a Dirchlet condition on a cyclic boundary
 
-cyclicZeroGradient :	Allows scalars to be prescribed as a Neumann condition on a cyclic boundary
+**cyclicZeroGradient** :	Allows scalars to be prescribed as a Neumann condition on a cyclic boundary
 
-initCanyon :	Utility to initialize velocity field in an infinite street canyon domain with perturbation
+**initCanyon** :	Utility to initialize velocity field in an infinite street canyon domain with perturbation
 
 urbanChemFoam and all related components, described in this document or otherwise, are licensed under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or, at your option, any later version.  A copy of the GNU General Public License can be found along with the distribution of urbanChemFoam.  If not, please refer to the URL http://www.gnu.org/licenses/.
 
@@ -22,11 +22,11 @@ urbanChemFoam and all related components, described in this document or otherwis
 
 These modules can be built as user applications and libraries upon a existing functional installation of OpenFOAM version 7, maintained by CFD Direct Ltd..  Instructions to install OpenFOAM version 7, urbanChemFoam, and all related components are presented below.  It is assumed that the user will compile said source locally on a Linux system using GCC version 4.8 and above.  In addition to the GCC version requirement, a version of MPI library compiled with the same version GCC tools for OpenFOAM is also requisite.  In the case of this study, it is version 4.0.1 of OpenMPI (default MPI library for OpenFOAM) compiled with GCC 9.2.0:
 
-1)	Download the source packages for OpenFOAM version 7 and accompanying third-party tools from the OpenFOAM Foundation website
+1.	Download the source packages for OpenFOAM version 7 and accompanying third-party tools from the OpenFOAM Foundation website
 
-a.	The URL at the time of writing is https://openfoam.org/download/7-source/
+  a.	The URL at the time of writing is https://openfoam.org/download/7-source/
 
-b.	Some urbanChemFoam components have been known to work only with OpenFOAM version 7.  The reaction class interface has been modified in this version and is incompatible with previous versions of OpenFOAM.  In addition, there are irreconcilable differences in basic data structures implementation between OpenFOAM from CFD Direct (the “.org” URL) and that from ESI (the “.com” URL) that urbanChemFoam will fail to compile in the ESI release
+  b.	Some urbanChemFoam components have been known to work only with OpenFOAM version 7.  The reaction class interface has been modified in this version and is incompatible with previous versions of OpenFOAM.  In addition, there are irreconcilable differences in basic data structures implementation between OpenFOAM from CFD Direct (the “.org” URL) and that from ESI (the “.com” URL) that urbanChemFoam will fail to compile in the ESI release
  
 2)	Follow the instructions for installing the OpenFOAM 7 framework, first by installing the third-party tools, followed by the OpenFOAM core, with the following notes
 
