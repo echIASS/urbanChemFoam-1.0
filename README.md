@@ -7,8 +7,8 @@ First Header  | Second Header
 Content Cell  | Content Cell
 Content Cell  | Content Cell
 
-    |
- ---|---
+  Module Name                     | Description
+ ---------------------------------|-----------------------------------------------------------------------------------------------------
  `dateTime`                       |	Associating simulation time with physical time based on Julian Date
  `solarUtils`                     |	Calculating solar state based on geographical information and physical time
  `irreversiblephotolysisReaction` |	Implementation of photolysis reactions for the OpenFOAM core thermophysics module
