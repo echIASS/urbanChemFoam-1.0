@@ -47,14 +47,14 @@ These modules can be built as user applications and libraries upon a existing fu
 
 6.	Link or copy the following files or directory from directory ${WM_PROJECT_USER}/src/ to corresponding locations in directory ${WM_PROJECT_DIR}/src/
 
-  a.	makePhotolysisReactions.C in thermophysicalModels/specie/reaction/reactions
-  b.	photolysisReactionRate in thermophysicalModels/specie/reaction/reactionRate
+    1.	makePhotolysisReactions.C in thermophysicalModels/specie/reaction/reactions
+    2.	photolysisReactionRate in thermophysicalModels/specie/reaction/reactionRate
 
 7.	Link the files below in ${WM_PROJECT_DIR}/src/thermopyhsicalModels/specie/lnInclude
 
-  a.	${WM_PROJECT_USER}/src/common/commonGlobals.H
-  b.	${WM_PROJECT_DIR}/src/ … /photolysisReactionRate/photolysisReactionRate.H
-  c.	${WM_PROJECT_DIR}/src/ … /photolysisReactionRate/photolysisReactionRateI.H
+    1.	${WM_PROJECT_USER}/src/common/commonGlobals.H
+    2.	${WM_PROJECT_DIR}/src/ … /photolysisReactionRate/photolysisReactionRate.H
+    3.	${WM_PROJECT_DIR}/src/ … /photolysisReactionRate/photolysisReactionRateI.H
 
 8.	Execute the script Allwmake in directory ${WM_PROJECT_DIR}/src/thermophysicalModels to update the OpenFOAM core thermophysics module with photolysis reactions
 
@@ -64,48 +64,49 @@ These modules can be built as user applications and libraries upon a existing fu
 
 ## Workflow for executing accompanied cases
 
-The following accompanied cases for a core mesh size of 0.5 m (fine mesh) are provided:
+The following accompanied cases for a core mesh size of 0.5 m (fine mesh) are provided in the tar archive `testCases-1.0.tar.gz`:
 
-1)	stationary-57600 : Stationary model run for 16:00 UTC (57600s)
+  1.	`stationary-57600` : Stationary model run for 16:00 UTC (57600s)
 
-2)	transient : Transient model run for a 24-hour period
+  2.	`transient` : Transient model run for a 24-hour period
 
-Both cases begin with a six-hour (21600 s) spin-up period; they are contained in the spinup directory for the stationary case, and the day00 directory in the transient case.  In the stationary case, the model rub for the sampling period is contained in the sample directory, while, in the transient case, this is in the day01 directory.  The transient run has an additional day02 directory, which performs an additional hour of simulation (from 00:00 to 01:00 UTC) to cover a full 24-hour period of central hourly average with a 3600 s window.
+Both cases begin with a six-hour (21600 s) spin-up period; they are contained in the spinup directory for the stationary case, and the `day00` directory in the transient case.  In the stationary case, the model rub for the sampling period is contained in the sample directory, while, in the transient case, this is in the `day01` directory.  The transient run has an additional `day02` directory, which performs an additional hour of simulation (from 00:00 to 01:00 UTC) to cover a full 24-hour period of central hourly average with a 3600 s window.
 
 Grid generation takes place prior to the spin-up run, and the same grid is used throughout the remaining stages of each model run.  On the other hand, domain decomposition (almost certainly necessary given the size of the problem) is required for each stage of the run, as field data are also decomposed along with mesh data.  Therefore, field data obtained at the end of each stage are recombined from the parallel domains and served as initial conditions for the proceeding stage.  Each parallel run could be executed from the console or submitted to a queue manager.
 
 Each directory represents a separate run following the same general workflow:
 
-1)	Go to the spin-up directory (spinup or day00)
+1.	Go to the spin-up directory (`spinup` or `day00`)
 
-2)	Generate mesh by executing the OpenFOAM application blockMesh
+2.	Generate mesh by executing the OpenFOAM application blockMesh
 
-3)	Initialize perturbed flow field with the application initCanyon
+3.	Initialize perturbed flow field with the application initCanyon
 
-4)	Perform domain decomposition using the OpenFOAM utility decomposePar
+4.	Perform domain decomposition using the OpenFOAM utility decomposePar
 
-5)	Execute model run with the command mpirun –np [NP] urbanChemFoam –parallel
+5.	Execute model run with the command mpirun –np [NP] urbanChemFoam –parallel
 
-a.	The number of processors, NP, must match the number of decomposed domains specified in OpenFOAM dictionary file system/decomposeParDict 
+    1.	The number of processors, NP, must match the number of decomposed domains specified in OpenFOAM dictionary file system/decomposeParDict 
 
-6)	Prepare field data for the proceeding run phase by using the script prepNextDay.sh
+6.	Prepare field data for the proceeding run phase by using the script prepNextDay.sh
 
-a.	A numerical directory will be created for the end-of-spin-up field data (21600 for the stationary run, and 86400 for the transient run).  Due to double precision storage of time the field data directory might not be written exactly as shown; simply rename the directory to remove the fractional part. 
+    1.	A numerical directory will be created for the end-of-spin-up field data (21600 for the stationary run, and 86400 for the transient run).  Due to double precision storage of time the field data directory might not be written exactly as shown; simply rename the directory to remove the fractional part. 
 
-7)	Switch to the sampling run directory (sample or day01)
+7.	Switch to the sampling run directory (sample or day01)
 
-8)	Check that the 0 directory (initial conditions) is linked correctly to the previous end-of-run field data (../sample/21600 or ../day00/86400)
+8.	Check that the 0 directory (initial conditions) is linked correctly to the previous end-of-run field data (../sample/21600 or ../day00/86400)
 
-a.	Note step 6a, if the previous end-of-run field data is not exactly as shown
+    1.	Note step 6a, if the previous end-of-run field data is not exactly as shown
 
-9)	Repeat Steps (4) and (5) for the sampling run.
+9.	Repeat Steps (4) and (5) for the sampling run.
 
 The stationary model run should be complete at the conclusion of this step.  The following steps apply to the transient model run.
-10)	Repeat Step (6) to generate end-of-run field data 
 
-11)	Switch to trailing run directory day02
+10.	Repeat Step (6) to generate end-of-run field data 
 
-12)	Repeat Steps (8) and (9) to complete the trailing data
+11.	Switch to trailing run directory day02
 
-Field data for all output time steps in the sampling run can be reconstructed using the OpenFOAM utility reconstructPar, which must be converted into VTK format using the OpenFOAM utility foamToVTK in order to be accessed in Paraview.  Line sample data (for instance, for the vertical and spanwise horizontal stations defined in Section 4) can be found stored in text format in the postProcessing directory.
+12.	Repeat Steps (8) and (9) to complete the trailing data
+
+Field data for all output time steps in the sampling run can be reconstructed using the OpenFOAM utility `reconstructPar`, which must be converted into VTK format using the OpenFOAM utility `foamToVTK` in order to be accessed in Paraview.  Line sample data (for instance, for the vertical and spanwise horizontal stations defined in Section 4) can be found stored in text format in the `postProcessing` directory.
 
